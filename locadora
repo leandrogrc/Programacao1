@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <locale.h>
+
+#define MAX_NUM 100
+
+typedef struct {
+  char titulo[MAX_NUM];
+  char genero[MAX_NUM];
+  float nota;
+} FILME;
+
+FILME filme;
+
+void nomeLocadora(){
+  printf("\t\t## LOCADORA ##\n\n");
+}
+
+void cadastrarFilme()
+  {
+  char opcao = 's';
+
+  while (opcao == 'S' || opcao == 's') {
+  printf("\n");
+  printf("Informe o nome do filme:\t");
+  fgets(filme.titulo, MAX_NUM, stdin);
+
+  printf("\nInforme o gênero:\t");
+  fgets(filme.genero, MAX_NUM, stdin);
+
+  printf("\nInforme a nota (0 a 5 estrelas):\t");
+  scanf("%f", &filme.nota);
+  getchar();
+
+  printf("\nFilme cadastrado com sucesso!\n\n");
+
+  printf("Título: %s\n", filme.titulo);
+  printf("Gênero: %s\n", filme.genero);
+  printf("Nota: %.1f\n", filme.nota);
+
+  printf("\nDeseja cadastrar mais um filme? (S/N)\n-> ");
+  scanf("%s", &opcao);
+  getchar();
+  }
+  printf("\n");
+  main();
+  }
+
+void verFilmes()
+  {
+  int opcao;
+  printf("\n");
+  printf("Título: %s", filme.titulo);
+  printf("\n- Gênero > %s", filme.genero);
+  printf("\n- Nota   > %.1f pts", filme.nota);
+  printf("\n\nPressione ENTER para voltar ao menu\n");
+  getchar();
+  }
+
+
+
+int main (){
+
+
+  setlocale(LC_ALL, "PORTUGUESE");
+  int opcao;
+
+  while (opcao != 3){
+
+  nomeLocadora();
+
+  printf("Menu Principal\n\n1. Cadastrar filme\n2. Ver filmes cadastrados\n3. Sair");
+  printf("\nDigite a opção desejada");
+  printf("\n-> ");
+  scanf("%d", &opcao);
+  getchar();
+  switch (opcao)
+  {
+    case 1:
+    cadastrarFilme();
+    break;
+    case 2:
+    verFilmes();
+    break;
+    case 3:
+    opcao = 3;
+    printf("\n------SISTEMA ENCERRADO------\n\tAté a próxima!\n");
+    break;
+  }
+  }
+
+
+  return 0;
+}
