@@ -1,0 +1,130 @@
+#include <stdio.h>
+#include <locale.h>
+
+#define MAX_NUM 100
+
+typedef struct {
+    char nome[MAX_NUM];
+    char end[MAX_NUM];
+    int telefone;
+} USER;
+
+USER user [3];
+int id;
+
+void bemVindo (){
+    printf("\t\t  ## Loja de CC! ##\n\n");
+    }
+
+void cadastrarPessoa(){
+
+    system("cls");
+
+    char opcao = 's'; id = 0;
+
+    printf("\t\t## CADASTRAR ##");
+
+    while (opcao == 's' || opcao == 'S'){
+
+    printf("\nInforme o nome -> ");
+    fgets(user[id].nome, MAX_NUM, stdin);
+
+    printf("\nInforme seu endereço -> ");
+    fgets(user[id].end, MAX_NUM, stdin);
+
+    printf("\nInforme seu telefone (apenas números) -> ");
+    scanf("%d", &user[id].telefone);
+    getchar();
+    id++;
+
+    printf("\nCadastro realizado com sucesso!\n");
+
+    printf("Deseja cadastrar um novo cliente? (S/N)\n-> ");
+    scanf("%s", &opcao);
+    getchar();
+    }
+
+    system("cls");
+}
+
+void verCadastros(){
+
+    system("cls");
+
+    printf("\n\t\t## CADASTROS ##\n\n");
+
+    for (id = 0; id < 3; id++){
+
+    printf("\nNome: %s", user[id].nome);
+
+    printf("\nEnd: %s", user[id].end);
+
+    printf("\nTEL: %d\n\n", user[id].telefone);
+
+    }
+
+    printf("\n\nPressione ENTER para voltar ao menu\n");
+    getchar();
+
+    system("cls");
+
+}
+
+void pesquisarID (){
+
+    system("cls");
+    int opcao;
+
+    printf("\t\t## PESQUISA POR ID ##\n");
+
+    printf("Digite o ID desejado\n-> ");
+    scanf("%d", &opcao);
+    getchar();
+
+    printf("\n# RESULTADO\nUsuário ID:%d\n", opcao);
+    printf("\nNome -> %s\nEnd -> %s\nTel -> %d\n", user[opcao].nome, user[opcao].end, user[opcao].telefone);
+    printf("Digite ENTER para voltar ao menu...");
+    getchar();
+    system("cls");
+
+
+}
+
+int main (){
+    setlocale(LC_ALL, "Portuguese");
+
+    int opcao;
+
+    bemVindo();
+
+    while (opcao != 4)
+        {
+
+        printf("- MENU PRINCIPAL");
+
+        printf("\nDigite a opção desejada\n\n1.Cadastrar cliente\n2.Ver cadastros\n3.Pesquisar por ID\n4.Sair\n\n");
+        printf("__________________\n-> ");
+        scanf("%d", &opcao);
+        getchar();
+
+        switch (opcao)
+        {
+        case 1:
+        cadastrarPessoa();
+        break;
+        case 2:
+        verCadastros();
+        break;
+        case 3:
+        pesquisarID();
+        break;
+        case 4:
+        opcao = 4;
+        printf("\nEncerrando o programa!\nAté logo!\n");
+        break;
+        }
+
+    }
+
+return 0;
+}
